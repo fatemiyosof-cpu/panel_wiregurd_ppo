@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: arcodm-panel-subscription
+    runtime: docker
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: arcodm-panel-subscription-db
+          property: connectionString
+      - key: PUBLIC_BASE_URL
+        value: https://arcodm-panel-subscription.onrender.com
+    healthCheckPath: /health
+
+databases:
+  - name: arcodm-panel-subscription-db
+    plan: free
